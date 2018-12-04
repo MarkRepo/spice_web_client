@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title></title>
+	<script type="text/javascript">
+		/*if (window.location.protocol != 'http:') {
+			window.location.replace(window.location.href.replace(/^.*:/, 'http:'));
+		}
+		//console.log(window.location);
+		*/
+		
+	</script>
+        <style type="text/css" media="screen">
+        video.rotate180{
+          transform:rotateX(180deg);
+          -moz-transform:rotateX(180deg);
+          -webkit-transform:rotateX(180deg);
+          -o-transform:rotateX(180deg);
+          -ms-transform:rotateX(180deg);
+        } 
+        </style>
+        <meta charset="utf-8">
+        <!-- libs -->
+        <script src="lib/modernizr.js"></script>
+        <script src="lib/jquery-2.0.3.js"></script>
+        <script src="../ext4/jquery.i18n.properties-1.0.9.js"></script>
+    	<script src="../ext4/language.js"></script>
+        <script src="lib/jquery.cookie.js"></script>
+        <script src="lib/jquery-mousewheel.js"></script>
+        <script src="lib/jgestures.min.js"></script>
+        <script src="lib/pixastic.js"></script>
+        <script src="lib/base64.js"></script>
+        <script src="lib/biginteger.js"></script>
+        <script src="lib/virtualjoystick.js"></script>
+        <script src="lib/prettyprint.js"></script>
+        <script src="lib/md5.js"></script>
+        <script src="lib/getticket.js"></script>
+        <!-- ticketing -->
+        <script src="lib/jsbn.js"></script>
+        <script src="lib/jsbn2.js"></script>
+        <script src="lib/prng4.js"></script>
+        <script src="lib/rng.js"></script>
+        <script src="lib/sha1.js"></script>
+        <script src="lib/encrypt.js"></script>
+        <!-- end libs -->
+	<!-- audio decode -->
+        <script src="audio/libopus.js"></script>
+        <script src="audio/opus.js"></script>
+        <script src="audio/xaudio.js"></script>
+        <script src="audio/ws-audio-api.js"></script>
+        <!-- core -->
+        <script src="lib/bowser.js"></script>
+        <script src="lib/utils.js"></script>
+        <script src="lib/flipper.js"></script>
+        <script src="lib/CollisionDetector.js"></script>
+        <script src="lib/GlobalPool.js"></script>
+        <script src="lib/GenericObjectPool.js"></script>
+        <script src="lib/AsyncConsumer.js"></script>
+        <script src="lib/AsyncWorker.js"></script>
+        <script src="lib/PacketWorkerIdentifier.js"></script>
+        <script src="spiceobjects/spiceobjects.js"></script>
+        <script src="spiceobjects/generated/protocol.js"></script>
+        <script src="lib/graphicdebug.js"></script>
+        <script src="lib/images/lz.js"></script>
+        <script src="lib/images/bitmap.js"></script>
+        <script src="lib/images/png.js"></script>
+        <script src="lib/runqueue.js"></script>
+        <script src="lib/graphic.js"></script>
+        <script src="lib/queue.js"></script>
+        <script src="lib/ImageUncompressor.js"></script>
+        <script src="lib/SyncAsyncHandler.js"></script>
+        <script src="lib/IntegrationBenchmark.js"></script>
+        <script src="lib/stuckkeyshandler.js"></script>
+        <script src="lib/timelapsedetector.js"></script>
+        <script src="lib/displayRouter.js"></script>
+        <script src="lib/rasterEngine.js"></script>
+        <script src="lib/DataLogger.js"></script>
+        <script src="network/socket.js"></script>
+        <script src="network/clusternodechooser.js"></script>
+        <script src="network/socketqueue.js"></script>
+        <script src="network/packetcontroller.js"></script>
+        <script src="network/packetextractor.js"></script>
+        <script src="network/packetreassembler.js"></script>
+        <script src="network/reassemblerfactory.js"></script>
+        <script src="network/sizedefiner.js"></script>
+        <script src="network/packetlinkfactory.js"></script>
+        <script src="network/spicechannel.js"></script>
+        <script src="network/busconnection.js"></script>
+        <script src="network/websocketwrapper.js"></script>
+        <script src="network/connectioncontrol.js"></script>
+        <script src="application/agent.js"></script>
+        <script src="application/spiceconnection.js"></script>
+        <script src="application/clientgui.js"></script>
+        <script src="application/packetprocess.js"></script>
+        <script src="application/packetfilter.js"></script>
+        <script src="application/packetfactory.js"></script>
+        <script src="application/application.js"></script>
+        <script src="application/virtualmouse.js"></script>
+        <script src="application/imagecache.js"></script>
+        <script src="application/rasteroperation.js"></script>
+        <script src="application/stream.js"></script>
+        <script src="application/inputmanager.js"></script>
+        <script src="process/busprocess.js"></script>
+        <script src="process/displayprocess.js"></script>
+        <script src="process/displaypreprocess.js"></script>
+        <script src="process/inputprocess.js"></script>
+        <script src="process/cursorprocess.js"></script>
+        <script src="process/playbackprocess.js"></script>
+        <script src="process/mainprocess.js"></script>
+        <script src="keymaps/keymapes.js"></script>
+        <script src="keymaps/keymapit.js"></script>
+        <script src="keymaps/keymapus.js"></script>
+        <script src="keymaps/keymapfr.js"></script>
+        <script src="keymaps/keymap.js"></script>
+        <script src="application/WorkerProcess.js"></script>
+		<script src="flexvdi/inactivity.js"></script>
+        <script src="flexvdi/flexvdi.js"></script>
+        <script src="flexvdi/extwin.js"></script>
+        <script src="run.js"></script>
+        <!-- wfs.js-->
+        <script src="wfs.js/dist/wfs.js"></script>
+        <!-- end core -->
+        <meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta name="viewport" content=" initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" /> 
+		<meta id="i18n_pagename" content="index">
+	    <meta name="keywords" content="" />
+	    <meta name="description" content=""/>	
+        <style type="text/css">
+            body {
+                background-color:black;
+                padding:0;
+                margin:0;
+				overflow:auto;
+            }
+            #dialog-close-box{
+            	background: #000000;
+            	opacity: 0.5;
+            	z-index:9999999;
+            	display: none;
+            	position: fixed;
+            	top: 0;
+            	left: 0;
+            }
+            #dialog-close{
+            	z-index: 99999999;
+            	display: none;
+            	width: 40%;
+            	position: absolute;
+            	margin-left: 30%;
+            	top: 36%;
+            	margin-bottom: 150px;
+            	border-radius: 6px;
+            	overflow: hidden;
+            }
+			#dialog-close-title{
+				height: 40px;
+			    background: #666;
+			    color: white;
+			    font-size: 18px;
+			    line-height: 40px;
+			    padding-left: 10px;
+			}
+			#dialog-close-text{
+				font-size: 16px;
+				background: white;
+				line-height: 50px;
+				height: 50px;
+				padding-left: 15px;
+				border-bottom: 1px solid #ccc;
+			}
+			#dialog-close-input{
+				background: white;
+				padding: 14px 10px;
+				height: 28px;
+			}
+			#dialog-close-input>button{
+			    background: white;
+			    border: 1px solid #ccc;
+			    padding: 6px 15px;
+			    color: #666;
+			    font-size: 12px;
+			    font-family: "宋体";
+			    border-radius: 4px;
+			    position: absolute;
+			    cursor: pointer;
+			}
+			#dialog-close-input>button:nth-child(1){
+				right: 100px;
+			}
+			#dialog-close-input>button:nth-child(2){
+				right: 25px;
+			}
+			#login{
+				background: #333;
+				width: 355px;
+				height:40px;
+				margin: 0 auto !important;
+				z-index: 9999999999999;
+				position: relative;
+			}
+			#login>div>button{
+				margin-top: 6px;
+			}
+			#ctrl{
+				margin-left: 25px !important;
+			}
+			#uploadfile{
+				display: none;
+			}
+			#login button#close{
+				background-image: none !important;
+			}
+			#login button{
+			    padding: 5px 10px 5px 10px;
+			    margin-top: 3px;
+			    margin-left: 5px;
+			    padding: 5px 10px;
+			    border: none;
+			    cursor: pointer;
+			    background-color: transparent;
+			    color: rgba(255, 255, 255, 0.8);
+			    -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+			}
+			#login button:hover{
+			    background-color: rgba(0, 0, 0, 0.1);
+			    color: rgba(255, 255, 255, 1);
+			}
+			#login button{
+			    outline: none;
+			}
+			#login.hidden{
+			    position: fixed;
+			    top: -33px!important;
+			}
+			#login.hidden-peek{
+			    position: fixed;
+			    top: 0px!important;
+			}
+			#ctrlBox{
+				display: none;
+				background: #333;
+				position: absolute;
+				top: 40px;
+				left: 0px;
+				width: 110px;
+				height: 105px;
+				/*border-top: 1px solid black;*/
+			}
+			#ctrlBox>button{
+				display: block;
+				margin: 0 auto;
+			}
+        </style>
+    </head>
+    <body>
+		<div class="wfsjs">
+            <video id="video1" autoplay muted class="rotate180" style="position: absolute;left: 0px;"></video> 
+            <div class="ratio"></div>	
+		</div>
+        <div id="testVdi" ></div>
+        <div id="login" class="hidden" onMouseEnter="showMenuBar();" onMouseLeave="hideMenuBar();">
+            <div>
+                <button id="uploadfile" onclick="showExtWin();">Subir Fichero</button>
+				<button id="ctrl" class="i18n" name="Hotkeys"></button>
+                <div id="ctrlBox">
+                	<button  onclick="sendCtrlAltDel();">Ctrl+Alt+Del</button>
+                	<button  onclick="sendWinL();">WIN+L</button>
+                	<button  onclick="sendAltTAB();">Alt+TAB</button>
+                	<button  onclick="sendAltF4();">Alt+F4</button>
+                </div>
+                <button id="UIStretch" class="i18n" name="UIStretch"></button>
+                <button id="fullscreen" class="i18n" name="FullScreen"></button>
+                <button id="close" class="i18n" name="Exit"></button>
+            </div>
+        </div>
+        <div id="dialog-close-box"></div>
+        <div id="dialog-close" class="overlay-dialog">
+			<div id="dialog-close-title" class="i18n" name="Tip"></div>
+			<div id="dialog-close-text" class="overlay-text i18n" name="Whether to exit the current desktop"></div>
+			<div id="dialog-close-input" class="overlay-inputs">
+			    <button type="button" id="yes" class="i18n" name="Confirm"></button>
+			    <button type="button" id="no" class="i18n" name="Cancel"></button>
+			</div>
+		</div>
+        <script>
+        if(JSON.parse(localStorage.getItem("desktop")).firstTime==1){
+        	window.desktop=JSON.parse(localStorage.getItem("desktop"));
+        	window.desktop.uuid=localStorage.getItem("uuid");
+        	//console.log(window.desktop);
+        	localStorage.setItem("desktop",JSON.stringify(window.desktop));
+        };
+        
+        window.onload = function () {
+            if (Wfs.isSupported()) {
+                var video1 = document.getElementById("video1");
+				/*video1.addEventListener('click', function(){
+					const playPromise = video1.play();
+					if(playPromise !== null){
+						playPromise.catch( () => {video1.play();});
+					}
+				});*/
+                wfs = new Wfs();    
+				window.wfs = wfs;
+                wfs.attachMedia(video1,'ch1');
+            }
+        };
+	
+		/*document.addEventListener('click', function(){
+			var ve1 = document.getElementById("video1");
+			const playPromise = ve1.play();
+			if(playPromise !== null){
+				playPromise.catch( () => {ve1.play();});
+			}
+		});*/
+	
+		document.addEventListener('visibilitychange', function(){
+			var wfs = window.wfs;
+			if(document.visibilityState == 'hidden'){
+				window.isResolutionChange = true;
+				//console.log("visibility fullscreenchange");
+			}
+			else{
+				app.sendCommand('getIDR');
+				//console.log("sendCommand getIDR");
+				//location.reload();
+			}
+		});
+
+		window.addEventListener('online', function(){
+				//console.log('online');
+				clearTimeout(window.offline_timeout);
+				location.reload();
+		});
+		window.addEventListener('offline', function(){
+				//console.log('offline');
+				window.offline_timeout = setTimeout(function(){
+					location.href = "../cloudDesktop.html";
+				}, 30*1000);
+		});
+		$(window).bind('beforeunload', function(){
+				var desktop = JSON.parse(localStorage.getItem('desktop'));
+				desktop.firstTime = 0;
+				localStorage.setItem('desktop', JSON.stringify(desktop));
+		});
+        </script>
+
+        <script>
+        	//console.log("我进入页面心跳"+"("+(new Date())+")");
+	    	setInactivityTimer();
+	    	var langCookie=localStorage.getItem("LangCookie")||"en";
+			jQuery.i18n.properties({
+	            name : "index", //资源文件名称
+	            path : '../i18n/' + langCookie +'/', //资源文件路径
+	            mode : 'map', //用Map的方式使用资源文件中的值
+	            language : langCookie
+	        });
+	        var timer;
+	        var timer2;
+	        var num=0;
+			var gettext = jQuery.i18n.prop;
+			window.username=localStorage.getItem("desktopUsername");
+			window.domain=localStorage.getItem("desktopDomain");
+			window.desktopDetailNum=localStorage.getItem("desktopDetailNum");
+			if(localStorage.getItem("LangCookie").indexOf("zh")!=-1){
+				$("#login").css("width","345px");
+			}else{
+				$("#login").css("width","355px");
+			};
+			//console.log("我进入心跳包循环了"+"("+(new Date())+")");
+			timer=setInterval(send_heart,30*1000);
+	    	//console.log(gettext("Hotkeys"));
+	    	$("title").html(JSON.parse(localStorage.getItem("desktop")).name);
+			// 启动全屏!
+			$("#fullscreen").click(function(){
+				if($("#fullscreen").html()==gettext("FullScreen")){
+					//全屏
+					launchFullscreen(document.documentElement); // 整个网页
+					$("#fullscreen").html(gettext("ExitFullScreen"));
+				}else if($("#fullscreen").html()==gettext("ExitFullScreen")){
+					// 退出全屏模式!
+					exitFullscreen(); // 整个网页
+					$("#fullscreen").html(gettext("FullScreen"));
+				}
+			});
+			
+			$("#login").css("left",($(window).width()-355)/2);
+			$("#dialog-close-box").css("width",$(window).width());
+	    	$("#dialog-close-box").css("height",$(window).height());
+			$(window).resize(function(){
+				$("#login").css("left",($(window).width()-355)/2);
+				$("#dialog-close-box").css("width",$(window).width());
+	    		$("#dialog-close-box").css("height",$(window).height());
+			})
+			$("#close").click(function(){
+				$("#dialog-close").css("display","block");
+				$("#dialog-close-box").css("display","block");
+				//location.href="../cloudDesktop.html"
+			});
+			$("#yes").click(function(){
+				location.href="../cloudDesktop.html"
+			});
+			$("#no").click(function(){
+				$("#dialog-close").css("display","none");
+				$("#dialog-close-box").css("display","none");
+			});
+			$("#ctrl").click(function(){
+				if($("#ctrlBox").css("display")=="none"){
+					$("#ctrlBox").css("display","block")
+				}else{
+					$("#ctrlBox").css("display","none")
+				}
+			});
+			//点击屏幕自适应
+			
+			$(document).on("mousemove",function(){
+				if($("#login").css("top")=="-33px"){
+					$("#ctrlBox").css("display","none")
+				}else if($("#login").css("top")=="0"){
+					$("#ctrlBox").css("display","block")
+				}
+			});
+			
+			document.addEventListener("fullscreenchange", function(e) {
+			  	//console.log("fullscreenchange", e);
+			  	fullscreenElement();
+			});
+			document.addEventListener("mozfullscreenchange", function(e) {
+			  	//console.log("mozfullscreenchange ", e);
+			  	fullscreenElement();
+			});
+			document.addEventListener("webkitfullscreenchange", function(e) {
+			  	//console.log("webkitfullscreenchange", e);
+			  	fullscreenElement();
+			});
+			document.addEventListener("msfullscreenchange", function(e) {
+			  	//console.log("msfullscreenchange", e);
+			  	fullscreenElement();
+			});
+			
+			function fullscreenElement(){
+				var fullscreenEle = document.fullscreenEnabled ||
+									window.fullScreen ||
+									document.webkitIsFullScreen ||
+									document.msFullscreenEnabled;
+				
+				//注意：要在用户授权全屏后才能获取全屏的元素，否则 fullscreenEle为null
+				
+				if(!fullscreenEle){
+					$("#fullscreen").html(gettext("FullScreen"));
+				}else{
+					$("#fullscreen").html(gettext("ExitFullScreen"));
+				};
+			
+			};
+			
+			function showMenuBar() {
+			    var i=0;
+				timer2=setInterval(function(){
+					i++;
+					if(i==5){
+						if (document.getElementById("login").className == "hidden") {
+					        document.getElementById("login").className = "hidden-peek";
+						}
+						clearInterval(timer2);
+					};
+					//console.log("i="+i);
+				},100);
+			}
+			function hideMenuBar() {
+				clearInterval(timer2);
+			    if (document.getElementById("login").className == "hidden-peek") {
+			        document.getElementById("login").className = "hidden";
+			    }
+			}
+			
+			function send_heart(){
+				//调心跳包的时候启用一个延时器，在服务器90s没有返回数据的时候退出到登录界面并提示
+				num++;
+				if(num==5){
+					num=0;
+				};
+				var timeout="timeout"+num;
+				timeout=setTimeout(function(){
+					localStorage.removeItem("ovdError");
+				    localStorage.removeItem("otherDeviceLogin");
+				    localStorage.removeItem("upgrade");
+				    localStorage.removeItem("heartError");
+				    			
+					localStorage.setItem("ovdError","yes");
+					localStorage.setItem("firstTimeLogin","no");
+					location.href="../login.html";
+				},90*1000);
+				
+				$.ajax({
+				    type: 'POST',
+				    url: "/ovd/terminal/heart_beat",
+				    data:{
+						username:window.username,
+			            domain:window.domain,
+			            addr:localStorage.getItem("ips"),
+			            mac:JSON.parse(localStorage.getItem("desktop")).uuid,
+			            versions:"6.2"
+			       	},
+				    success: function(data) {
+				    	//console.log(data);
+				    	clearTimeout(timeout);
+				    	if (data.meta.code == 200) {
+				    		//console.log("发送心跳包完成"+"("+(new Date())+")");
+				    		if(data.data.ret==1001){
+				    			localStorage.removeItem("ovdError");
+				    			localStorage.removeItem("otherDeviceLogin");
+				    			localStorage.removeItem("upgrade");
+				    			localStorage.removeItem("heartError");
+				    			
+					    		localStorage.setItem("ovdError","yes");
+					      		localStorage.setItem("firstTimeLogin","no");
+					      		//console.log("我是1001状态码");
+					      		location.href="../login.html";
+					    	}else if(data.data.ret==1002){
+					    		localStorage.removeItem("ovdError");
+				    			localStorage.removeItem("otherDeviceLogin");
+				    			localStorage.removeItem("upgrade");
+				    			localStorage.removeItem("heartError");
+					    		
+					    		localStorage.setItem("otherDeviceLogin","yes");
+					      		localStorage.setItem("firstTimeLogin","no");
+					      		location.href="../login.html";
+					    	}
+			           	};
+				    },
+				    error: function(data) {
+				    	//console.log(data);
+				    	clearTimeout(timeout);
+				      	if(data.status==500){
+					      	location.href="../cloudDesktop.html";
+				      		//console.log("我是1003状态码");
+				      	}else if(data.status==502){
+				      		localStorage.removeItem("ovdError");
+			    			localStorage.removeItem("otherDeviceLogin");
+			    			localStorage.removeItem("upgrade");
+			    			localStorage.removeItem("heartError");
+				      		
+				      		localStorage.setItem("upgrade","yes");
+				      		localStorage.setItem("firstTimeLogin","no");
+				      		location.href="../login.html";
+				      		////console.log("我是502错误码");
+				      		//console.log("我是1004状态码");
+				      	}
+				    }
+				});
+			};
+			function send_heart2(){
+				$.ajax({
+				    type: 'POST',
+				    url: "/ovd/terminal/heart_beat",
+				    data:{
+						username:window.username,
+			            domain:window.domain,
+			            addr:localStorage.getItem("ips"),
+			            mac:JSON.parse(localStorage.getItem("desktop")).uuid,
+			            versions:"6.2"
+			       	},
+				    success: function(data) {
+				    	//console.log(data);
+				    	if (data.meta.code == 200) {
+				    		//console.log("发送心跳包完成");
+				    		if(data.data.ret==1001){
+				    			localStorage.removeItem("ovdError");
+				    			localStorage.removeItem("otherDeviceLogin");
+				    			localStorage.removeItem("upgrade");
+				    			localStorage.removeItem("heartError");
+				    			
+					    		localStorage.setItem("ovdError","yes");
+					      		localStorage.setItem("firstTimeLogin","no");
+					      		location.href="../login.html";
+					    	}else if(data.data.ret==1002){
+					    		localStorage.removeItem("ovdError");
+				    			localStorage.removeItem("otherDeviceLogin");
+				    			localStorage.removeItem("upgrade");
+				    			localStorage.removeItem("heartError");
+					    		
+					    		localStorage.setItem("otherDeviceLogin","yes");
+					      		localStorage.setItem("firstTimeLogin","no");
+					      		//console.log("我是2002状态码");
+					      		location.href="../login.html";
+					    	}else{
+					    		location.href="../cloudDesktop.html";	
+					    	}
+			           	};
+				    },
+				    error: function(data) {
+				    	//console.log(data);
+				      	if(data.status==500){
+					      	location.href="../cloudDesktop.html";
+				      	}else if(data.status==502){
+				      		localStorage.removeItem("ovdError");
+			    			localStorage.removeItem("otherDeviceLogin");
+			    			localStorage.removeItem("upgrade");
+			    			localStorage.removeItem("heartError");
+				      		
+				      		localStorage.setItem("upgrade","yes");
+				      		localStorage.setItem("firstTimeLogin","no");
+					      	//console.log("我是2005状态码");
+					      	location.href="../login.html";
+				      	}
+				    }
+				});
+			};
+        </script>
+    </body>
+</html>
