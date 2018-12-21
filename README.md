@@ -102,7 +102,7 @@ NDR（1），IDR（5），SEI（6），SPS（7），PPS（8），AUD（9），En
 
 #### 音频流处理总体设计
 
-![audio.png](web_client_audio.png)
+![audio.png](web_client_audio_process.png)
 音频处理流程图
 
 音频处理流程说明:
